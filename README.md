@@ -24,7 +24,7 @@ Download the [latest JAR release](https://github.com/nccgroup/HTTPSignatures/rel
 4. You can now use Burp Proxy, Repeater, Intruder, and Scanner. 
    The extension will create a new Signature for each request that contains the configured `Header Name`.
 
-### Use
+### Usage
 
 After `HTTPSignatures` has been correctly configured, the Burp Suite extension will replace the HTTP header value configured in the `Header Name` setting (e.g. `Signature`) with a new signature for every HTTP request sent through Burp Proxy, Repeater, Intruder, and Scanner.
 
@@ -77,7 +77,7 @@ The global configuration section contains settings that apply to all profiles.
     - Intruder (default: enabled)
     - Repeater (default: enabled)
 
-    The proxy is disabled be default. The oder tools are enabled by default. The proxy tool should usually only be enabled when using the intercept feature. The extension will not update the signature when it is disabled.
+    The proxy is disabled by default. The other tools are enabled by default. The proxy tool should usually only be enabled when using the intercept feature. The extension will not update the signature when it is disabled.
 
 - **Enable Debug Logs**: Enabling this checkbox will print debug logs to the standard output. 
   The output can be configured in Burp Suite under Extender -> Extensions, then select the *Signing HTTP Messages* extension. 
@@ -114,7 +114,7 @@ The implementation is based on the draft specification with some modifications.
 - Digest Header Name: `x-content-sha256`
 - Header Names to Sign: GET: `date (request-target) host`
 - Header Names to Sign: HEAD: `date (request-target) host`
-- eader Names to Sign: DELETE: `date (request-target) host`
+- Header Names to Sign: DELETE: `date (request-target) host`
 - Header Names to Sign: PUT: `date (request-target) host content-length content-type x-content-sha256`
 - Header Names to Sign: POST: `date (request-target) host content-length content-type x-content-sha256`
 - Include query parameters in Signature: `true`
