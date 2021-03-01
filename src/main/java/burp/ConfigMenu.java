@@ -16,9 +16,6 @@ class ConfigMenu implements Runnable, MenuListener, IExtensionStateListener {
         menuButton.addMenuListener(this);
         JMenuBar burpMenuBar = ConfigSettings.getBurpFrame().getJMenuBar();
 
-        // Show the menu now after installing the extension
-        menuSelected(null);
-
         if (burpMenuBar == null) {
             Signing.callbacks.printError("Unable to add HTTP Signatures menu button.");
         } else {
