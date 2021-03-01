@@ -3,8 +3,6 @@ package burp;
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 class ConfigMenu implements Runnable, MenuListener, IExtensionStateListener {
     private JMenu menuButton;
@@ -15,17 +13,12 @@ class ConfigMenu implements Runnable, MenuListener, IExtensionStateListener {
 
     public void run() {
         menuButton = new JMenu("HTTP Signatures");
-        menuButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        Signing.globalSettings.showSettings();
-                    }
-                });
-            }
-        });
+        menuButton.addMenuListener(this);
         JMenuBar burpMenuBar = ConfigSettings.getBurpFrame().getJMenuBar();
+
+        // Show the menu now after installing the extension
+        menuSelected(null);
+
         if (burpMenuBar == null) {
             Signing.callbacks.printError("Unable to add HTTP Signatures menu button.");
         } else {
