@@ -114,11 +114,13 @@ public class ConfigSettings {
         JPanel globalPanel = new JPanel(); // The global panel contains the global settings above the profile tabs
         globalPanel.setLayout(new BoxLayout(globalPanel, BoxLayout.PAGE_AXIS));
         JLabel titleGlobalConfig = new JLabel("Global Configuration Settings");
-        titleGlobalConfig.setText("<html><font color=orange size=4><b>Global Configuration Settings</b></html>");
+        titleGlobalConfig.setForeground(Color.ORANGE);
+        titleGlobalConfig.setFont(titleGlobalConfig.getFont().deriveFont(Font.BOLD, titleGlobalConfig.getFont().getSize() + 4));
         globalPanel.add(titleGlobalConfig);
         // Checkboxes to enable/disable the extension for each Burp Suite tool
         JLabel labelTools = new JLabel("Enable the extension for the following Burp Suite tools:");
-        labelTools.setText("<html><strong>Enable the extension for the following Burp Suite tools:</strong></html>");
+        Font labelToolsFont = labelTools.getFont();
+        labelTools.setFont(labelToolsFont.deriveFont(labelToolsFont.getStyle() | Font.BOLD)); // make text bold
         globalPanel.add(labelTools);
         if ((Signing.callbacks.loadExtensionSetting("enableProxy") != null) &&
                 Signing.callbacks.loadExtensionSetting("enableProxy").equals("true")) {
@@ -150,7 +152,8 @@ public class ConfigSettings {
         globalPanel.add(checkBoxToolRepeater);
         // Debugging settings
         JLabel labelDebugging = new JLabel("Debugging");
-        labelDebugging.setText("<html><strong>Debugging:</strong></html>");
+        Font labelDebuggingFont = labelDebugging.getFont();
+        labelDebugging.setFont(labelDebuggingFont.deriveFont(labelDebuggingFont.getStyle() | Font.BOLD)); // make text bold
         globalPanel.add(labelDebugging);
         checkBoxDebug.setSelected(Signing.DEBUG); // set the checkbox if debugging logs is enabled
         globalPanel.add(checkBoxDebug);
@@ -176,7 +179,8 @@ public class ConfigSettings {
             @Override
             public void mouseEntered(MouseEvent e) {
                 // the mouse has entered the label
-                labelDoc.setText("<html><a href=''>" + doc + "</a></html>");
+                Font labelDocFont = labelDebugging.getFont();
+                labelDoc.setFont(labelDocFont.deriveFont(labelDocFont.getStyle() | Font.BOLD)); // make text bold
             }
 
             @Override
@@ -193,7 +197,8 @@ public class ConfigSettings {
         maxSize = new Dimension(Short.MAX_VALUE, 25);
         globalPanel.add(new Box.Filler(minSize, prefSize, maxSize));
         JLabel titleProfileConfig = new JLabel("Profile Configuration");
-        titleProfileConfig.setText("<html><font color=orange size=4><b>Profile Configuration</b></html>");
+        titleProfileConfig.setForeground(Color.ORANGE);
+        titleProfileConfig.setFont(titleProfileConfig.getFont().deriveFont(Font.BOLD, titleProfileConfig.getFont().getSize() + 4));
         globalPanel.add(titleProfileConfig);
 
         rootPanel.add(globalPanel, BorderLayout.PAGE_START);
